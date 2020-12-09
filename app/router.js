@@ -1,5 +1,5 @@
 import express from 'express';
-import {addAppointment , getAppointments} from './controller/app-controller.js';
+import {addAppointment , getAppointments ,getAppointmentsList , updateAppointments} from './controller/app-controller.js';
 
 var router = express.Router();
 
@@ -9,6 +9,14 @@ addAppointment
 
 router.post('/getAppointment',
 getAppointments
+)
+
+router.post('/getAppointmentsList',
+getAppointmentsList
+)
+
+router.post('/updateAppointments',
+updateAppointments
 )
 
 export {router}
