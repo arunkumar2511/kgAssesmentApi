@@ -7,7 +7,7 @@ router.post('/addAppointment',
 addAppointment
 )
 
-router.get('/getAppointment',
+router.post('/getAppointment',
 getAppointments
 )
 
