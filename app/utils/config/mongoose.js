@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 
 function buildMongoUri(){
-    return "mongodb+srv://dbadmin:admin@cluster0.hcvzh.mongodb.net/kgisl?retryWrites=true&w=majority"
+    
+    return "mongodb+srv://dbadmin:admin@cluster0.qi6jo.mongodb.net/kgisl?retryWrites=true&w=majority"
 }
 
 async function connectMongoose() {
@@ -28,15 +29,15 @@ mongoose.connection.on("reconnected", () => {
 });
 
 mongoose.connection.on("disconnected", () => {
-    console.exception("MongoDB Connection Disconnected");
+    console.error("MongoDB Connection Disconnected");
 });
 
 mongoose.connection.on("close", () => {
-    console.exception("MongoDB Connection Closed");
+    console.error("MongoDB Connection Closed");
 });
 
 mongoose.connection.on("error", (error) => {
-    console.exception("MongoDB Connection ERROR: " + error);
+    console.error("MongoDB Connection ERROR: " + error);
 });
 
 export async function connectMongoDatabase(){
