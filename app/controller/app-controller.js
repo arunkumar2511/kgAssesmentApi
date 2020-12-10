@@ -1,7 +1,6 @@
 import Appointments from '../models/slots.js';
 import lodash from 'lodash';
 import {getFormattedDate} from '../utils/common/common-functions.js';
-import ObjectId from 'mongodb';
 
 export async function addAppointment(req,res){
     let params = req.body;
@@ -59,7 +58,12 @@ export async function updateAppointments(req,res){
     try {
         let status = params['status'];
         let id = params['id'];
-        await Appointments.updateOne({_id:ObjectId(id)},{$set:{status:status}})
+        let updateValue = {status:status}
+        if(status == 'checkin')
+            updateValue['checkin_time'] = new Date();
+        if(status == 'visited')
+            updateValue['visited_time'] = new Date();
+        await Appointments.updateOne({_id:id},{$set:updateValue})
         return res.status(200).send({status:true,message:"Success"})
     } catch (error) {
         let msg = "Exception during updating appointments :- "+error;
